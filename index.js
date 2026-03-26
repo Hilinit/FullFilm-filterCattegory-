@@ -1,3 +1,8 @@
+let toggle = document.getElementById("toggle-btn")
+let sidebar = document.getElementById("sidebar");
+
+toggle.addEventListener("click", () => { sidebar.classList.toggle("-translate-x-full"); });
+
 let cards = document.getElementById("Cards")
 let genre = document.getElementById("genre")
 let display = document.getElementById("display")
@@ -17,7 +22,6 @@ fetch("https://69b99a1ce69653ffe6a8318b.mockapi.io/genre")
         </li>
       `
     })
-
   });
 
 fetch("https://69b99a1ce69653ffe6a8318b.mockapi.io/moveData")
@@ -66,7 +70,7 @@ function getCards(show) {
           <span class="text-sm block text-slate-400 font-medium mt-2">
             ${item.type} | ${item.type === "movie" ? `${item.details.duration} dəq` : `${item.details.seasons} sezon, ${item.details.episodes} bölüm`}
           </span>
-        </div>
+        </div> 
       </div>
     `
   })

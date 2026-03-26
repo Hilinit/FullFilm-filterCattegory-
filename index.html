@@ -9,17 +9,23 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
   </head>
+  <body class="bg-[#070b18] flex">
 
-  <body class="bg-[#070b18]">
+    <button id="toggle-btn" 
+    class="absolute top-4 right-4 z-[500] bg-[#081028] py-2 px-3 rounded-lg shadow-lg lg:hidden text-white">
+    ☰
+  </button>
 
     <!-- Sidebar -->
-    <nav id="sidebar" class="lg:w-[270px] max-lg:fixed transition-all duration-500 shrink-0 z-[100]">
-      <div id="sidebar-collapse-menu"
-        class="bg-[#081028] shadow-lg h-screen fixed top-0 left-0 overflow-auto overflow-x-hidden overflow-y-hidden z-[99] lg:w-[270px]  transition-all duration-500">
-        <div class="py-4 px-4 mt-6">
-          <div class="flex relative bg-[#0b1739] px-3 py-2.5 rounded-md border border-gray-600"> <input
-              class="text-sm text-gray-300 outline-0 bg-transparent px-1 max-w-[130px]" placeholder="Search..." />
-          </div>
+    <nav id="sidebar"
+    class="lg:w-[270px] fixed top-0 left-0 h-screen z-[400] bg-[#081028] transition-transform duration-500 -translate-x-full lg:translate-x-0">
+
+    <div class="py-4 px-4 mt-6">
+      <div class="flex bg-[#0b1739] px-3 py-2.5 rounded-md border border-gray-600">
+        <input
+          class="text-sm text-gray-300 outline-0 bg-transparent w-full"
+          placeholder="Search..." />
+      </div>
           <div class="space-y-2 mt-6">
             <div> <a href="javascript:void(0)"
                 class="text-gray-300 text-sm font-medium flex items-center cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2.5 transition-all duration-300">
@@ -54,7 +60,7 @@
 
     <!-- Main -->
     <div
-      class="lg:ml-[270px] sm:ml-[190px]  flex flex-col items-center min-h-screen sm:w-[calc(100%-190px)] lg:w-[calc(100%-270px)]">
+    class="flex-1  w-full lg:ml-[270px]">
 
       <!-- Header -->
       <div
