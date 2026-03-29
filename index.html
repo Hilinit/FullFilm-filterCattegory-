@@ -14,29 +14,31 @@
   </head>
 
   <body class="bg-[#0f172b] flex ">
-    <header onclick="openClose()"
-      style="background-image: url('https://i.pinimg.com/1200x/56/51/81/565181f6b45c563cd51d8fde3f9568f3.jpg');"
-      class="fixed  z-[499] py-1 px-1 w-full h-[50px]  lg:hidden text-white before:absolute before:inset-0 before:bg-black/70">
-      <button id="toggle-btn"
-        class="absolute top-2 right-4 z-[500] bg-[#081028] py-1 px-2 rounded-lg shadow-lg lg:hidden text-white">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <h1 class=" text-white font-bold  absolute left--20  !z-[501]  px-3 rounded-lg shadow-lg lg:hidden text-[25px]">
-        Full<span class="text-orange-500">Film</span>
-      </h1>
-    </header>
-
+    <header style="background-image: url('https://i.pinimg.com/1200x/56/51/81/565181f6b45c563cd51d8fde3f9568f3.jpg');"
+      class="fixed z-[499] py-1 px-1 w-full h-[50px] text-white before:absolute before:inset-0 before:bg-black/70 lg:hidden">
+  
+  <button onclick="openClose()" id="toggle-btn"
+    class="absolute top-2 right-12 z-[500] bg-[#081028] py-1 px-2 rounded-lg shadow-lg lg:hidden text-white">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  
+  <h1 class="text-white font-bold absolute left-4 !z-[501] px-3 rounded-lg shadow-lg text-[25px]">
+    Full<span class="text-orange-500">Film</span>
+  </h1>
+</header>
     <!-- Sidebar -->
     <nav id="sidebar"
-      class="lg:w-[270px] fixed top-0 left-0 h-screen z-[500] bg-[#081028] transition-transform duration-500 -translate-x-full lg:translate-x-0">
+      class="lg:w-[270px] fixed top-0 left-0 h-screen  z-[500] bg-[#081028] transition-transform duration-500 -translate-x-full lg:translate-x-0">
       <h1 class=" text-white font-bold top-2 absolute left--20  !z-[501]  px-4 rounded-lg shadow-lg  text-[25px]">
         Full<span class="text-orange-500">Film</span>
       </h1>
       <div class="py-4 px-4 mt-8">
-        <div class="flex bg-[#0b1739] px-3 py-2.5 rounded-md border border-gray-600">
-          
-          <input id="search" o class="text-sm text-gray-300 outline-0 bg-transparent w-full"
-            placeholder="Janr axtar..." />
+        <div class="flex bg-[#0b1739] px-3 py-2.5 rounded-lg border border-gray-700 focus-within:border-orange-500 transition">
+          <input 
+            id="search"
+            class="text-sm text-gray-300 outline-none bg-transparent w-full placeholder-gray-500"
+            placeholder="Film, janr axtar..."
+          />
         </div>
         <div class="space-y-2 mt-6">
           <div> <a href="javascript:void(0)"
@@ -59,18 +61,70 @@
               </svg> </a>
 
 
-            <ul id="genre" class="sub-menu overflow-hidden transition-[max-height] duration-500 ease-in-out ml-8">
+            <ul id="genre" class="sub-menu  transition-[max-height] duration-500 ease-in-out ml-8">
 
 
             </ul>
           </div>
           <hr class="border-gray-600 my-6" />
+          
 
         </div>
       </div>
     </nav>
 
     <!-- Main -->
+    <!-- Əlfəcin -->
+  <div onclick="openModal()" class="fixed lg:absolute top-2 right-1 z-501 bg-[#081028] py-2 px-2 rounded-lg shadow-lg text-white hover:bg-[#0b1739] transition flex items-center gap-1 lg:right-4 p-3 ">
+    <i class="fa-regular fa-bookmark"></i>
+    <span class="font-bold text-[18px] hidden sm:inline">Əlfəcin</span>
+  </div>
+
+
+  <div id="modal"  style="display:none">
+    <div>
+      <div>
+          <div
+              class="fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto">
+              <div class="w-full max-w-lg bg-[#0b1739] shadow-lg rounded-3xl px-8 py-6 relative">
+                  <div class="flex items-start">
+                      <div class="flex-1">
+                          <h3 class=" text-orange-500 text-[22px] font-semibold">Əlfəcin</h3>
+                          <p id="message" class=" text-white text-[15px] font-bold mt-1"></p>
+                      </div>
+
+                      <svg id="closeIcon" onclick="openModal()" xmlns="http://www.w3.org/2000/svg"
+                          class="w-3.5 h-3.5 ml-2 cursor-pointer shrink-0 fill-gray-400 hover:fill-orange-500"
+                          viewBox="0 0 320.591 320.591">
+                          <path
+                              d="M30.391 318.583a30.37 30.37 0 0 1-21.56-7.288c-11.774-11.844-11.774-30.973 0-42.817L266.643 10.665c12.246-11.459 31.462-10.822 42.921 1.424 10.362 11.074 10.966 28.095 1.414 39.875L51.647 311.295a30.366 30.366 0 0 1-21.256 7.288z"
+                              data-original="#000000"></path>
+                          <path
+                              d="M287.9 318.583a30.37 30.37 0 0 1-21.257-8.806L8.83 51.963C-2.078 39.225-.595 20.055 12.143 9.146c11.369-9.736 28.136-9.736 39.504 0l259.331 257.813c12.243 11.462 12.876 30.679 1.414 42.922-.456.487-.927.958-1.414 1.414a30.368 30.368 0 0 1-23.078 7.288z"
+                              data-original="#000000"></path>
+                      </svg>
+                  </div>
+
+                  
+                  <div id="mark" class="mt-6 divide-y divide-gray-300">
+                      <!-- <div class="flex flex-wrap items-center gap-4 py-3 cursor-pointer">
+                          <img src='https://readymadeui.com/team-1.webp' class="w-20 h-20 rounded" />
+                          <div class=" text-white">
+                              <p class="text-sm font-semibold">John Doe</p>
+                              <p class="text-xs mt-0.5">johndoe23@gmail.com</p>
+                          </div>
+                          <p onclick="addBookmark(id)" class="text-xl text-slate-500 mt-0.5 ml-auto"><i class="fa-regular fa-bookmark"></i></p>
+                      </div> -->
+
+                  </div>
+
+              </div>
+          </div>
+      </div>
+      
+
+  </div>
+  </div>
 
     <div class="flex-1  w-full lg:ml-[270px]">
 

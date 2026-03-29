@@ -59,20 +59,39 @@ function filtrData(name) {
 function getCards(show) {
   cards.innerHTML = "";
   show.map(item => {
+    const isBookmarked = bookmark.find(b => b.id === item.id);
     cards.innerHTML += `
-      <div class="flex flex-col bg-[#0b1739] cursor-pointer rounded-sm overflow-hidden shadow-sm hover:scale-[1.03] transition-all duration-300">
-        <div class="h-80 w-full object-center">
-          <img src="${item.poster}" alt="${item.title}" class="w-full h-80 object-center" />
-        </div>
-        <div class="p-6">
-          <h3 class="text-lg font-semibold text-slate-200">${item.title}</h3>
-          <span class="text-sm block text-slate-400 font-medium mt-2"> Janr: ${item.genre} | IMDBRating ${item.imdbRating}</span>
-          <p class="text-sm text-slate-300 mt-4 leading-relaxed line-clamp-3">${item.description}</p>
-          <span class="text-sm block text-slate-400 font-medium mt-2">
-            ${item.type} | ${item.type === "film" ? `${item.details.duration} dəq` : `${item.details.seasons} sezon ${item.details.episodes} bölüm`}
-          </span>
-        </div> 
-      </div>
+    <div class="flex flex-col bg-[#0b1739] cursor-pointer rounded-sm overflow-hidden shadow-sm hover:scale-[1.03] transition-all duration-300">
+  
+    <div class="h-80 w-full object-center relative">
+  
+    <div onclick="addBookmark(${item.id})" class="absolute top-3 right-3 bg-black/50 backdrop-blur-md p-2 rounded-full z-10 hover:bg-[#0b1739]transition cursor-pointer">
+    <i class="${isBookmarked ? 'fa-solid text-red-500' : 'fa-regular text-white'} fa-bookmark text-lg"></i>
+    </div>
+     
+      <img src="${item.poster}" alt="${item.title}" class="w-full h-80 object-cover" />
+    </div>
+  
+    <div class="p-6">
+      <h3 class="text-lg font-semibold text-slate-200">${item.title}</h3>
+  
+      <span class="text-sm block text-slate-400 font-medium mt-2">
+        Janr: ${item.genre} | IMDB ${item.imdbRating}
+      </span>
+  
+      <p class="text-sm text-slate-300 mt-4 leading-relaxed line-clamp-3">
+        ${item.description}
+      </p>
+  
+      <span class="text-sm block text-slate-400 font-medium mt-2">
+        ${item.type} |
+        ${item.type === "film"
+          ? `${item.details.duration} dəq`
+          : `${item.details.seasons} sezon ${item.details.episodes} bölüm`}
+      </span>
+    </div>
+  
+  </div>
     `
   })
 }
@@ -83,7 +102,7 @@ searchInput.addEventListener("input", (event) => {
   filtrGenre(input);
 });
 function filtrGenre(input) {
-  const filtered = all.filter(f => f.genre.find(g => g.toLowerCase().includes(input)));
+  const filtered = all.filter(f => f.title.toLowerCase().includes(input));
 
   if (filtered.length === 0) {
     display.innerHTML =
@@ -101,7 +120,46 @@ function filtrGenre(input) {
     display.style.display = 'none'
     cards.style.display = 'grid'
   }
-  //title.innerHTML = input === "Hamısı" ? "Bütün Filmlər" : `${input} janrında filmlər/seriallar `;
-  title.innerHTML = input === "Hamısı" ? "Bütün Janrlar" : `${input ? `${input} janrında filmlər/seriallar` : "Janr adı yazın və ya seçin.."} `;
 
+  title.innerHTML = input === "Hamısı" ? "Bütün Janrlar" : `Axtarışın nəticəsi`;
 }
+let modal = document.getElementById("modal")
+function openModal() {modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';}
+
+let bookmark = []
+let message = document.getElementById("message")
+
+function addBookmark(id) {
+  const index = bookmark.findIndex(n => n.id === id); 
+  
+  if (index === -1) {
+      const item = all.find(n => n.id === id);
+      if (item) bookmark.push(item);
+  } 
+  else {bookmark.splice(index, 1);}
+  message.innerHTML = bookmark.length === 0 ? "Bəyəndiyiniz film/serialları əlavə edin" : `Bəyəndiyiniz film/seriallar`;
+  getCards(all);
+  showBookmarks();
+}
+
+let mark = document.getElementById('mark')
+
+function showBookmarks(){
+  mark.innerHTML = ''
+  bookmark.map(item => {
+    const isBookmarked = bookmark.find(b => b.id === item.id);
+    mark.innerHTML +=`
+    <div class="flex flex-wrap items-center gap-4 py-3 cursor-pointer">
+    <img src='${item.poster}' class="w-20 h-20 rounded" />
+    <div class=" text-white">
+        <p class="text-sm font-semibold">${item.title}</p>
+        <p class="text-xs mt-0.5">${item.type} |
+        ${item.type === "film"
+          ? `${item.details.duration} dəq`
+          : `${item.details.seasons} sezon ${item.details.episodes} bölüm`}</p>
+    </div>
+    <p  onclick="addBookmark(${item.id})" class="text-xl text-slate-500 mt-0.5 ml-auto"><i id='id${item.id}' class="${isBookmarked ? 'fa-solid text-red-500' : 'fa-regular text-white'} fa-bookmark"></i></p>
+</div>
+    `})
+}
+console.log(bookmark)
