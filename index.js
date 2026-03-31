@@ -69,7 +69,7 @@ function getCards(show) {
     <i class="${isBookmarked ? 'fa-solid text-red-500' : 'fa-regular text-white'} fa-bookmark text-lg"></i>
     </div>
      
-      <img src="${item.poster}" alt="${item.title}" class="w-full h-80 object-cover" />
+      <img src="${item.poster}" alt="${item.title}" class="w-full h-80 " />
     </div>
   
     <div class="p-6">
@@ -89,7 +89,10 @@ function getCards(show) {
           ? `${item.details.duration} dəq`
           : `${item.details.seasons} sezon ${item.details.episodes} bölüm`}
       </span>
+      <button type="button" onclick="getMore(${item.id})"
+    class="px-6 py-2.5  mt-4 rounded-md text-white text-sm cursor-pointer tracking-wider font-medium border-0 outline-0 bg-gradient-to-tr hover:bg-gradient-to-tl from-orange-700 to-orange-400">Daha Çox Oxu</button>
     </div>
+    
   
   </div>
     `
@@ -163,3 +166,10 @@ function showBookmarks(){
     `})
 }
 console.log(bookmark)
+
+//--------------------------------------------------------------
+
+function getMore(id) {
+  window.location.href = `detail.htm?id=${id}`
+
+  }

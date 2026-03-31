@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+  <div id="detailData"></div>
+
+  <script>
+    let detailData = document.getElementById('detailData')
+    const params = new URLSearchParams(window.location.search)
+    const id = params.get('id')
+    fetch(`https://69b99a1ce69653ffe6a8318b.mockapi.io/moveData/${id}`)
+            .then(res => res.json())
+            .then(data => detailData.innerHTML = `<div class="bg-white">
+              <div class="p-4 lg:max-w-7xl max-w-4xl mx-auto">
+                <div class="grid items-start grid-cols-1 lg:grid-cols-5 gap-12 shadow-[0_2px_10px_-3px_rgba(169,170,172,0.8)] p-6 rounded-sm">
+                  <div class="lg:col-span-3 w-full lg:sticky top-0 text-center">
+                    <div class="px-4 py-10 rounded-sm shadow-md relative">
+                      <img src="${data.poster}" alt="Product" class="w-4/5 aspect-[251/171] rounded-sm object-cover mx-auto" />
+                    </div>
+                  </div>
+                  <div class="lg:col-span-2">
+                    <h3 class="text-xl font-semibold text-slate-900">${data.title}"</h3>
+                    <div class="flex items-center space-x-1 mt-2">
+                      <h4 class="text-slate-500 text-base !ml-3">Janr: ${data.genre} | IMDB ${data.imdbRating}</h4>
+                      <h4 class="text-slate-500 text-base !ml-3">Ssenarist: ${data.director}</h4>
+                      <h4 class="text-slate-500 text-base !ml-3">Ssenarist: ${data.cast}</h4>
+                    </div>
+                    <p class="text-sm text-slate-500 mt-4">${data.scenario}</p>
+                    <div class="flex flex-wrap gap-4 mt-8">
+                      <span class="text-sm block text-slate-400 font-medium mt-2">
+                        ${data.type} |
+                        ${data.type === "film"
+                          ? `${data.details.duration} dəq`
+                          : `${data.details.seasons} sezon ${data.details.episodes} bölüm`}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>`)
+</script>
+
+  
+</body>
+
+</html>
+
+
+
