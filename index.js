@@ -142,7 +142,7 @@ searchInput.addEventListener("focus", () => {
   searchPanel.style.display = 'grid'
 });
 searchInput.addEventListener("blur", () => {
-  setTimeout(() => { searchPanel.style.display = 'none'; }, 3000);
+  setTimeout(() => { searchPanel.style.display = 'none'; }, 500);
 });
 
 //----------------------------------------Bookmark-a atmaq-----------------------------------------------
