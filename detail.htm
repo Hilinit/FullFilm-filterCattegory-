@@ -1,57 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="az">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FullFilm - Detallar</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-  <div id="detailData"></div>
+<body class="bg-[#0f172b]">
+  <div id="detailData">
+      <p class="text-center mt-10 text-white">Məlumat yüklənir...</p>
+  </div>
 
   <script>
-    let detailData = document.getElementById('detailData')
-    const params = new URLSearchParams(window.location.search)
-    const id = params.get('id')
-    fetch(`https://69b99a1ce69653ffe6a8318b.mockapi.io/moveData/${id}`)
-            .then(res => res.json())
-            .then(data => detailData.innerHTML = `<div class="bg-white">
-              <div class="p-4 lg:max-w-7xl max-w-4xl mx-auto">
-                <div class="grid items-start grid-cols-1 lg:grid-cols-5 gap-12 shadow-[0_2px_10px_-3px_rgba(169,170,172,0.8)] p-6 rounded-sm">
-                  <div class="lg:col-span-3 w-full lg:sticky top-0 text-center">
-                    <div class="px-4 py-10 rounded-sm shadow-md relative">
-                      <img src="${data.poster}" alt="Product" class="w-4/5 aspect-[251/171] rounded-sm object-cover mx-auto" />
-                    </div>
-                  </div>
-                  <div class="lg:col-span-2">
-                    <h3 class="text-xl font-semibold text-slate-900">${data.title}"</h3>
-                    <div class="flex items-center space-x-1 mt-2">
-                      <h4 class="text-slate-500 text-base !ml-3">Janr: ${data.genre} | IMDB ${data.imdbRating}</h4>
-                      <h4 class="text-slate-500 text-base !ml-3">Ssenarist: ${data.director}</h4>
-                      <h4 class="text-slate-500 text-base !ml-3">Ssenarist: ${data.cast}</h4>
-                    </div>
-                    <p class="text-sm text-slate-500 mt-4">${data.scenario}</p>
-                    <div class="flex flex-wrap gap-4 mt-8">
-                      <span class="text-sm block text-slate-400 font-medium mt-2">
-                        ${data.type} |
-                        ${data.type === "film"
-                          ? `${data.details.duration} dəq`
-                          : `${data.details.seasons} sezon ${data.details.episodes} bölüm`}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>`)
-</script>
+    const detailData = document.getElementById('detailData');
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
 
-  
+        fetch(`https://69b99a1ce69653ffe6a8318b.mockapi.io/moveData/${id}`)
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                detailData.innerHTML = `
+                <div class="bg-[#0f172b] min-h-screen py-10">
+                    <div class="p-4 lg:max-w-7xl max-w-4xl mx-auto">
+                        <div class="grid items-start grid-cols-1 lg:grid-cols-5 gap-12 shadow-lg p-6 rounded-lg border border-gray-100">
+                            <div class="lg:col-span-2 w-full lg:sticky top-6">
+                                <div class="rounded-lg overflow-hidden shadow-md">
+                                    <img src="${data.poster}" alt="${data.title}" class="w-full h-[500px] object-cover" />
+                                </div>
+                            </div>
+                            
+                            <div class="lg:col-span-3">
+                                <h3 class="text-3xl font-bold text-slate-900 mb-2 text-white">${data.title}</h3>
+                                
+                                <div class="flex flex-col space-y-2 mb-6 text-slate-600">
+                                    <p><span class="font-semibold text-white">Janr:</span> ${data.genre.join(', ')}</p>
+                                    <p><span class="font-semibold text-yellow-600">IMDB:</span> ${data.imdbRating}</p>
+                                    <p><span class="font-semibold text-white">Rejissor:</span> ${data.director}</p>
+                                    <p><span class="font-semibold text-white">Aktyorlar:</span> ${data.cast.join(', ')}</p>
+                                </div>
+
+                                <div class="border-t border-gray-100 pt-4">
+                                    <h4 class="text-lg font-semibold text-white mb-2">Ssenari:</h4>
+                                    <p class="text-base leading-relaxed text-slate-500">${data.scenario}</p>
+                                </div>
+
+                                <div class="mt-8">
+                                    <span class="inline-block bg-slate-100 text-slate-700 px-4 py-2 rounded-full text-sm font-medium uppercase tracking-wide">
+                                        ${data.type === "film" ? "Bədii Film" : "Serial"} 
+                                        <span class="mx-2">|</span>
+                                        ${data.type === "film" 
+                                            ? `${data.details.duration} dəqiqə` 
+                                            : `${data.details.seasons} sezon, ${data.details.episodes} bölüm`}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            })
+  </script>
 </body>
-
 </html>
-
-
-
