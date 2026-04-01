@@ -9,9 +9,13 @@
 </head>
 <body class="bg-[#0f172b]">
   <div id="detailData">
-      <p class="text-center mt-10 text-white text-[20px]">Məlumat yüklənir...</p>
+    <div class="flex flex-col justify-center items-center h-screen gap-4">
+        <img src="loading.png" alt="loading" class="w-16 h-16">
+        <p class="text-orange-500 text-[20px] font-bold">Məlumat yüklənir...</p>
+    </div>
+      
   </div>
-
+  
   <script>
     const detailData = document.getElementById('detailData');
     const params = new URLSearchParams(window.location.search);
@@ -24,14 +28,14 @@
                 <div class="bg-[#0f172b] min-h-screen py-10">
                     <div class="p-4 lg:max-w-7xl max-w-4xl mx-auto">
                         <div class="grid items-start grid-cols-1 lg:grid-cols-5 gap-12 shadow-lg p-6 rounded-lg border border-gray-100">
-                            <div class="lg:col-span-2 w-full lg:sticky top-6">
+                            <div class="lg:col-span-2 w-auto lg:sticky top-6">
                                 <div class="rounded-lg overflow-hidden shadow-md">
-                                    <img src="${data.poster}" alt="${data.title}" class="w-full h-[300px] lg:h-[600px]" />
+                                    <img src="${data.poster}" alt="${data.title}" class="w-auto h-auto  lg:h-[600px]" />
                                 </div>
                             </div>
                             
-                            <div class="lg:col-span-3">
-                                <h3 class="text-3xl font-bold text-slate-900 mb-2 text-white">${data.title}</h3>
+                            <div class="lg:col-span-3 m-auto ">
+                                <h3 class="text-6xl font-bold  mb-2 text-orange-500">${data.title}</h3>
                                 
                                 <div class="flex flex-col space-y-2 mb-6 text-slate-600">
                                     <p><span class="font-semibold text-white">Janr:</span> ${data.genre}</p>

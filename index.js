@@ -22,7 +22,6 @@ fetch("https://69b99a1ce69653ffe6a8318b.mockapi.io/genre")
         </li>
       `
     })
-
   });
 
 fetch("https://69b99a1ce69653ffe6a8318b.mockapi.io/moveData")
@@ -62,27 +61,20 @@ function getCards(show) {
     const isBookmarked = bookmark.find(b => b.id == item.id);
     cards.innerHTML += `
     <div class="flex flex-col bg-[#0b1739] cursor-pointer rounded-sm overflow-hidden shadow-sm hover:scale-[1.03] transition-all duration-300">
-  
     <div class="h-80 w-full object-center relative">
-  
     <div onclick="addBookmark(${item.id})" class="absolute top-3 right-3 bg-black/50 backdrop-blur-md p-2 rounded-full z-10 hover:bg-[#0b1739]transition cursor-pointer">
     <i class="${isBookmarked ? 'fa-solid text-red-500' : 'fa-regular text-white'} fa-bookmark text-lg"></i>
     </div>
-     
       <img src="${item.poster}" alt="${item.title}" class="w-full h-80 " />
     </div>
-  
     <div class="p-6">
       <h3 class="text-lg font-semibold text-slate-200">${item.title}</h3>
-  
       <span class="text-sm block text-slate-400 font-medium mt-2">
         Janr: ${item.genre} | IMDB ${item.imdbRating}
       </span>
-  
       <p class="text-sm text-slate-300 mt-4 leading-relaxed line-clamp-3">
         ${item.description}
       </p>
-  
       <span class="text-sm block text-slate-400 font-medium mt-2">
         ${item.type} |
         ${item.type === "film"
@@ -134,7 +126,7 @@ let message = document.getElementById("message")
 
 function addBookmark(id) {
   const index = bookmark.findIndex(n => n.id == id); 
-  
+
   if (index === -1) {
       const item = all.find(n => n.id == id);
 
@@ -147,7 +139,6 @@ function addBookmark(id) {
 }
 
 let mark = document.getElementById('mark')
-
 
 function showBookmarks(){
   mark.innerHTML = ''
@@ -171,12 +162,4 @@ function showBookmarks(){
 console.log(bookmark)
 
 //--------------------------------------------------------------
-
-function getMore(id) {
-  window.location.href = `detail.htm?id=${id}`
-
-  }
-
-function getDetail(){
-  
-}
+function getMore(id) {window.location.href = `detail.htm?id=${id}`}
