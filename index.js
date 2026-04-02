@@ -108,6 +108,7 @@ function getCards(show) {
 //-----------------------------------------------Search filtr---------------------------------------------------------------------
 
 let resultSearch = document.getElementById("resultSearch")
+let searchMessage = document.getElementById("searchMessage")
 let searchInput = document.getElementById("search");
 searchInput.addEventListener("input", (event) => {
   let input = event.target.value.toLowerCase();
@@ -134,7 +135,8 @@ function filtrGenre(input) {
           </div>
         </div>
       `})
-  }
+  } else searchMessage.innerHTML = "Axtarışa uyğun nəticə mövcud deyil!"
+  
 }
 
 let searchPanel = document.getElementById("searchPanel")
